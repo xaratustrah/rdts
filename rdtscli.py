@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-A client/server code for Raspberry Pi as a distributed trigger box
+A client/server code for Raspberry PI as a distributed trigger box system
 
 Xaratustrah
 2016

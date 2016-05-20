@@ -1,2 +1,2 @@
 # rdts
-Raspberry PI distributed trigger system
+A client/server code for Raspberry PI as a distributed trigger box system.
