@@ -47,6 +47,16 @@ def gpio_setup():
     gpio.output(LED, gpio.LOW)
 
 
+def do_trigger():
+    gpio.output(TRIG_OUT, gpio.HIGH)
+    time.sleep(TRIGGER_SLEEP)
+    gpio.output(TRIG_OUT, gpio.LOW)
+
+    gpio.output(LED, gpio.HIGH)
+    time.sleep(LED_SLEEP)
+    gpio.output(LED, gpio.LOW)
+
+
 def start_server(host, port):
     context = zmq.Context()
     sock = context.socket(zmq.PUB)
@@ -64,16 +74,6 @@ def start_server(host, port):
         except(EOFError, KeyboardInterrupt):
             print('\nUser input cancelled. Aborting...')
             break
-
-
-def do_trigger():
-    gpio.output(TRIG_IN, gpio.HIGH)
-    time.sleep(TRIGGER_SLEEP)
-    gpio.output(TRIG_IN, gpio.LOW)
-
-    gpio.output(LED, gpio.HIGH)
-    time.sleep(LED_SLEEP)
-    gpio.output(LED, gpio.LOW)
 
 
 def start_client(host, port):
