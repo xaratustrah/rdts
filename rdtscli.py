@@ -21,15 +21,17 @@ if os.name == 'posix' and os.uname().machine == 'armv7l':
                 You can achieve this by using 'sudo' to run your script""")
 
 # sleep time in seconds
-SLEEP_TIME = 0.5
+TRIGGER_SLEEP = 0.05
+LED_SLEEP = 0.2
 
 # Assing GPIO pin numbers
 
 # Output pins
-OUTP = 31
+TRIG_IN = 31
 
 # Input pins
-INPT = 33
+TRIG_OUT = 33
+LED = 35
 
 
 def gpio_setup():
@@ -37,36 +39,48 @@ def gpio_setup():
     gpio.setwarnings(False)
     # we need board numbering system
     gpio.setmode(gpio.BOARD)
-    gpio.setup(OUTP, gpio.OUT)
-    gpio.setup(INPT, gpio.IN)
+    gpio.setup(TRIG_IN, gpio.IN)
+
+    gpio.setup(TRIG_OUT, gpio.OUT)
+    gpio.output(TRIG_OUT, gpio.LOW)
+    gpio.setup(LED, gpio.OUT)
+    gpio.output(LED, gpio.LOW)
 
 
 def start_server(host, port):
     context = zmq.Context()
     sock = context.socket(zmq.PUB)
 
-    print("tcp://{}:{}".format(host, port))
-    sock.bind("tcp://{}:{}".format(host, port))
-
     topic = '10002'  # just a number for identification
-    # check time
-    current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
-    messagedata = current_time
-    sock.send_string("{} {}".format(topic, messagedata))
-    print("{} {}".format(topic, messagedata))
+    print("Server started on tcp://{}:{}".format(host, port))
+    sock.bind("tcp://{}:{}".format(host, port))
+    while True:
+        try:
+            input('\nPress enter to trigger. ctrl-c to abort.')
+            current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
+            sock.send_string("{} {}".format(topic, current_time))
+            print("Last triggered at {}.".format(current_time))
+
+        except(EOFError, KeyboardInterrupt):
+            print('\nUser input cancelled. Aborting...')
+            break
 
 
 def do_trigger():
-    gpio.output(OUTP, gpio.HIGH)
-    time.sleep(SLEEP_TIME)
-    gpio.output(OUTP, gpio.LOW)
+    gpio.output(TRIG_IN, gpio.HIGH)
+    time.sleep(TRIGGER_SLEEP)
+    gpio.output(TRIG_IN, gpio.LOW)
+
+    gpio.output(LED, gpio.HIGH)
+    time.sleep(LED_SLEEP)
+    gpio.output(LED, gpio.LOW)
 
 
 def start_client(host, port):
     # setup GPIO
     gpio_setup()
     context = zmq.Context()
-    print('Client started. ctrl-c to abort.\n')
+    print('Client started. Listening to tcp://{}:{}. ctrl-c to abort.\n'.format(host, port))
     try:
         sock = context.socket(zmq.SUB)
         sock.connect("tcp://{}:{}".format(host, port))
@@ -77,7 +91,7 @@ def start_client(host, port):
             string = sock.recv().decode("utf-8")
             current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
             do_trigger()
-            print("Server time: {}, client time: {}".format(string, current_time))
+            print("Triggered by server. Server time: {}, client time: {}".format(string, current_time))
 
 
     except(ConnectionRefusedError):
