@@ -20,18 +20,18 @@ if os.name == 'posix' and os.uname().machine == 'armv7l':
         print("""Error importing RPi.GPIO!  This is probably because you need superuser privileges.
                 You can achieve this by using 'sudo' to run your script""")
 
-# sleep time in seconds
-TRIGGER_SLEEP = 0.05
-LED_SLEEP = 0.2
+# duration times in seconds
+TRIGGER_DURATION = 0.1
+BEEP_DURATION = 0.2
 
 # Assing GPIO pin numbers
 
 # Output pins
-TRIG_IN = 31
+TRIG_IN = 8
 
 # Input pins
-TRIG_OUT = 33
-LED = 35
+BEEP = 32
+TRIG_OUT = 38
 
 
 def gpio_setup():
@@ -43,18 +43,18 @@ def gpio_setup():
 
     gpio.setup(TRIG_OUT, gpio.OUT)
     gpio.output(TRIG_OUT, gpio.LOW)
-    gpio.setup(LED, gpio.OUT)
-    gpio.output(LED, gpio.LOW)
+    gpio.setup(BEEP, gpio.OUT)
+    gpio.output(BEEP, gpio.LOW)
 
 
 def do_trigger():
     gpio.output(TRIG_OUT, gpio.HIGH)
-    time.sleep(TRIGGER_SLEEP)
+    time.sleep(TRIGGER_DURATION)
     gpio.output(TRIG_OUT, gpio.LOW)
 
-    gpio.output(LED, gpio.HIGH)
-    time.sleep(LED_SLEEP)
-    gpio.output(LED, gpio.LOW)
+    gpio.output(BEEP, gpio.HIGH)
+    time.sleep(BEEP_DURATION)
+    gpio.output(BEEP, gpio.LOW)
 
 
 def start_server(host, port):
