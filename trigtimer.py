@@ -63,14 +63,14 @@ def start_trigger(trig_time):
 
 def main():
     parser = argparse.ArgumentParser(prog='trigtimer')
-    parser.add_argument('--time', nargs=1, type=int,
+    parser.add_argument('--trigtime', nargs=1, type=int,
                         help='Trigger time in seconds', default=5)
     parser.add_argument('--version', action='version', version=__version__)
 
     args = parser.parse_args()
     # check the first switches
 
-    start_trigger(int(time))
+    start_trigger(int(trigtime))
 
 # ----------------------------
 
