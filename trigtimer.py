@@ -58,19 +58,27 @@ def do_trigger():
     gpio.output(BEEP, gpio.LOW)
 
 
-def start_trigger(trig_time):
+def start_trigger(trig_time, logfile):
     gpio_setup()
     print('Triggering every {}. Press ctrl-c to abort.'.format(trig_time))
+    if logfile != '':
+        f = open(logfile, "a")
     try:
         while True:
+            current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
+            print('Triggering at: {}'.format(current_time))
             do_trigger()
             time.sleep(trig_time)
+            f.write(current_time)
     except(EOFError, KeyboardInterrupt):
         print('\nUser input cancelled. Aborting...')
+        f.close()
 
 
 def main():
     parser = argparse.ArgumentParser(prog='trigtimer')
+    parser.add_argument('--logfile', nargs=1, type=str,
+                        help='name of the logfile', default='')
     parser.add_argument('--time', nargs=1, type=int,
                         help='Trigger time in seconds', default=5)
     parser.add_argument('--version', action='version', version=__version__)
@@ -78,7 +86,8 @@ def main():
     args = parser.parse_args()
     # check the first switches
     trigtime = int(args.time[0])
-    start_trigger(trigtime)
+    logfile = args.logfile[0]
+    start_trigger(trigtime, logfile)
 
 # ----------------------------
 
