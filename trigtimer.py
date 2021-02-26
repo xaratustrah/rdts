@@ -13,6 +13,13 @@ import argparse
 import os
 from version import __version__
 
+if os.name == 'posix' and os.uname().machine == 'armv7l':
+    try:
+        import RPi.GPIO as gpio
+    except RuntimeError:
+        print("""Error importing RPi.GPIO!  This is probably because you need superuser privileges.
+                You can achieve this by using 'sudo' to run your script""")
+
 
 # duration times in seconds
 TRIGGER_DURATION = 0.1
