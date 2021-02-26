@@ -64,9 +64,9 @@ def start_trigger(trig_time, logfile):
     f = open(logfile, "a")
     try:
         while True:
+            time.sleep(trig_time)
             current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
             print('Triggering at: {}'.format(current_time))
-            time.sleep(trig_time)
             do_trigger()
             f.write(current_time + '\n')
     except(KeyboardInterrupt):
