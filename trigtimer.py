@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-A trigger with a timer
+A trigger with a timer. Triggers every XXX seconds and records the times in a log file.
 
 Xaratustrah
 2021
