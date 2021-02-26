@@ -68,7 +68,7 @@ def start_trigger(trig_time, logfile):
             print('Triggering at: {}'.format(current_time))
             do_trigger()
             time.sleep(trig_time)
-            f.write(current_time)
+            f.write(current_time + '\n')
     except(EOFError, KeyboardInterrupt):
         print('\nUser input cancelled. Aborting...')
         f.close()
