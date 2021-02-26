@@ -61,8 +61,7 @@ def do_trigger():
 def start_trigger(trig_time, logfile):
     gpio_setup()
     print('Triggering every {}. Press ctrl-c to abort.'.format(trig_time))
-    if logfile != '':
-        f = open(logfile, "a")
+    f = open(logfile, "a")
     try:
         while True:
             current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
@@ -78,7 +77,7 @@ def start_trigger(trig_time, logfile):
 def main():
     parser = argparse.ArgumentParser(prog='trigtimer')
     parser.add_argument('--logfile', nargs=1, type=str,
-                        help='name of the logfile', default='')
+                        help='name of the logfile', default='trigtimer.log')
     parser.add_argument('--time', nargs=1, type=int,
                         help='Trigger time in seconds', default=5)
     parser.add_argument('--version', action='version', version=__version__)
