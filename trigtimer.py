@@ -52,6 +52,7 @@ def do_trigger():
 
 
 def start_trigger(trig_time):
+    gpio_setup()
     print('Triggering every {}. Press ctrl-c to abort.'.format(trig_time))
     try:
         while True:
