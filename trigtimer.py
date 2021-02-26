@@ -86,7 +86,7 @@ def main():
     args = parser.parse_args()
     # check the first switches
     trigtime = int(args.time[0])
-    logfile = args.logfile[0]
+    logfile = args.logfile
     start_trigger(trigtime, logfile)
 
 # ----------------------------
