@@ -60,7 +60,7 @@ def do_trigger():
 
 def start_trigger(trig_time, logfile):
     gpio_setup()
-    print('Triggering every {} seconds. Press ctrl-c to abort. ctrl-d for immediate trigger'.format(trig_time))
+    print('Triggering every {} seconds. Otherwise press ctrl-c to trigger once and abort.'.format(trig_time))
     f = open(logfile, "a")
     try:
         while True:
