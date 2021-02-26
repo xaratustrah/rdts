@@ -69,12 +69,10 @@ def start_trigger(trig_time, logfile):
             print('Triggering at: {}'.format(current_time))
             do_trigger()
             f.write(current_time + '\n')
-    except(KeyboardInterrupt):
-        print('\nUser input cancelled. Aborting...')
-        f.close()
-    except(EOFError):
+    except(KeyboardInterrupt, EOFError):
+        print('\nUser input cancelled.')
         current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
-        print('Manual trigger issued at: {}'.format(current_time))
+        print('Last trigger issued at: {}'.format(current_time))
         do_trigger()
         f.write(current_time + '\n')
         print('\nNow aborting...')
