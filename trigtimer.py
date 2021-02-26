@@ -60,7 +60,7 @@ def do_trigger():
 
 def start_trigger(trig_time, logfile):
     gpio_setup()
-    print('Triggering every {}. Press ctrl-c to abort. ctrl-d for immediate trigger'.format(trig_time))
+    print('Triggering every {} seconds. Press ctrl-c to abort. ctrl-d for immediate trigger'.format(trig_time))
     f = open(logfile, "a")
     try:
         while True:
@@ -73,9 +73,8 @@ def start_trigger(trig_time, logfile):
         print('\nUser input cancelled. Aborting...')
         f.close()
     except(EOFError):
-        print('\nManual trigger...')
         current_time = datetime.datetime.now().strftime('%Y-%m-%d@%H:%M:%S.%f')
-        print('Triggering at: {}'.format(current_time))
+        print('Manual trigger issued at: {}'.format(current_time))
         do_trigger()
         f.write(current_time + '\n')
         print('\nNow aborting...')
