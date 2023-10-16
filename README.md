@@ -1,6 +1,6 @@
 # RDTS - Raspberry Pi Distributed Trigger System
 
-![RDTS](https://raw.githubusercontent.com/xaratustrah/rdts/master/rdts.png)
+![RDTS](https://raw.githubusercontent.com/xaratustrah/rdts/master/rsrc/rdts.png)
 
 RDTS is a set of tools for hardware triggering data acquisition devices such as data loggers, oscilloscopes or spectrum analysers. The output can be used in order to trigger several devices.
 
