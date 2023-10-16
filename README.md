@@ -13,6 +13,7 @@ The code can be operated in stand alone mode for manual or time based trigger. I
 After cloning the code of the repository, go inside that directory and type:
 
 ```
+pip install -r requirements.txt
 pip3 install .
 ```
 
