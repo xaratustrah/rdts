@@ -12,7 +12,8 @@ import datetime, time
 import argparse
 import zmq
 import os
-from version import __version__
+
+from .version import __version__
 
 if os.name == 'posix' and os.uname().machine == 'armv7l':
     try:

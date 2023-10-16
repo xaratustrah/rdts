@@ -13,7 +13,8 @@ import datetime
 import time
 import argparse
 import os
-from version import __version__
+
+from .version import __version__
 
 if os.name == 'posix' and os.uname().machine == 'armv7l':
     try:
