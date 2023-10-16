@@ -14,7 +14,7 @@ You can install the tool just by typing:
 pip install .
 ```
 
-#### Stand alone trigger `rdts_cliserv`
+#### Stand alone trigger: `rdts_cliserv`
 
 This is a stand alone trigger machine that triggers every XXX seconds and writes the trigger times in a log file, where XXX is a value that you enter int the command line. Trigger every 2 seconds and record the times in a log file:
 
@@ -24,7 +24,7 @@ rdts_timer --time 2 --logfile test.txt
 
 You can interrupt the trigger by pressing `ctrl-C`. By doing so, one last trigger will be issued. So this can be used for single arbitrary triggers, like you set the trigger time to something large, but then break at your wish.
 
-#### `rdtscli`
+#### Client-Server based remote trigger: `rdtscli`
 
 This one is a client/server code that allows for a distributed trigger box system. The server is run on the the computer. The client on the trigger box. It accepts only IP addresses not names. Please also provide port numbers.
 
