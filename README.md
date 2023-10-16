@@ -62,4 +62,4 @@ Please see the file [LICENSE.md](./LICENSE.md) for further information about how
 
 ## Acknowledgements
 
-Many thanks to Davide Recano for providing help with the mechanical preparation of the enclosure.
+Many thanks to Davide Racano for providing help with the mechanical preparation of the enclosure.
