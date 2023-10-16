@@ -105,7 +105,7 @@ def start_trigger(trig_time, logfile):
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='trigtimer')
+    parser = argparse.ArgumentParser(prog='rdts_timer')
     parser.add_argument('--logfile', nargs=1, type=str,
                         help='name of the logfile', default='trigtimer.log')
     parser.add_argument('--time', nargs=1, type=int,

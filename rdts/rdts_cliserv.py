@@ -32,8 +32,8 @@ BEEP_DURATION = 0.2
 TRIG_IN = 8
 
 # Input pins
-BEEP = 32
-TRIG_OUT = 38
+BEEP = 38
+TRIG_OUT = 32
 
 
 def gpio_setup():
@@ -104,7 +104,7 @@ def start_client(host, port):
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='rasdaq')
+    parser = argparse.ArgumentParser(prog='rdts_cliserv')
     parser.add_argument('--host', nargs=1, type=str, help='Host address', default='127.0.0.1')
     parser.add_argument('--port', nargs=1, type=int, help='Port number', default=1234)
     parser.add_argument('--version', action='version', version=__version__)
