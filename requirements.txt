@@ -1,1 +1,3 @@
 zmq
+RPi.GPIO
+spidev
