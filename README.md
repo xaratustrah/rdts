@@ -9,7 +9,7 @@ The code also provides a delayed trigger exactly half of the assigned value. Thi
 The code can be operated in stand alone mode for manual or time based trigger. In the client / server mode, many devices can be triggered at once.
 
 #### Schematics
-The schematics has been creating using [KiCAD](https://www.kicad.org/). The schematics file is included in the project. A PDF version of the schematics (connection plan) can be found [here](https://raw.githubusercontent.com/xaratustrah/rdts/master/rsrc/rdts.kicad_sch.pdf).
+The schematics has been creating using [KiCAD](https://www.kicad.org/). The schematics file is included in the project. A PDF version of the schematics (connection plan) can be found [here](https://github.com/xaratustrah/rdts/blob/main/rsrc/rdts.kicad_sch.pdf). Needed parts are listed also in an spread sheet document [here](https://github.com/xaratustrah/rdts/blob/main/rsrc/rdts_part_list.ods).
 
 
 #### Installation
