@@ -39,7 +39,7 @@ You can interrupt the trigger by pressing `ctrl-C`. By doing so, one last trigge
 
 #### Client-Server based remote trigger: `rdtscli`
 
-This one is a client/server code that allows for a distributed trigger box system. The server is run on the the computer. The client on one or many trigger boxes. It accepts only IP addresses not names. Please also provide port numbers. The IP address is the one of the computer. For example:
+This one is a client/server code that allows for a distributed trigger box system. The server is run on the the computer. The client on one or many trigger boxes. It accepts only IP addresses not names. Please also provide port numbers. The IP address is *always* the one of the computer, not of the RDTS box! For example:
 
 On the computer you run the server:
 
@@ -47,16 +47,15 @@ On the computer you run the server:
 rdts_cliserv --server --host 192.168.1.3 --port 1434
 ```
 
-here `host` is the IP address of the computer, who is acting as a server.
+here `host` is the IP address of the computer, who is acting as a server, not the one of the Trigger box!
 
-
-on the RDTS you run the client:
+similarly on the RDTS side, you run the client:
 
 ```
 rdts_cliserv --client --host 192.168.1.3 --port 1434
 ```
 
-here the same information as above, that is, the IP address and port numnber of the server is given.
+here the same information as above, that is, again here the IP address and port numnber of the server computer is used not of the RDTS trigger box.
 
 
 ## Licensing
